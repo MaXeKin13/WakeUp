@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Player player;
 
-    [SerializeField] RespawnZone respawnZone;
+    [SerializeField] public RespawnZone respawnZone;
 
     public List<GameObject> nightmareObjects = new List<GameObject>();
 
@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     }
     public void Nightmare()
     {
-        if (!isNightmare)
+        StopAllCoroutines();
+        //if (isNightmare)
         {
             isNightmare = true;
             StartCoroutine(NightmareRoutine());

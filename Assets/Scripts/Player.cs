@@ -78,6 +78,18 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.Nightmare();
         }
+        if(other.transform.CompareTag("Finish"))
+        {
+            StartCoroutine(Goal());
+        }
+    }
+    public GameObject Canvas;
+    private IEnumerator Goal()
+    {
+        GameManager.instance.respawnZone.gameObject.SetActive(false);
+        Canvas.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        Application.Quit();
     }
     private void OnCollisionExit(Collision collision)
     {
