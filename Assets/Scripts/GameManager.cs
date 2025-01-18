@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    //Jump Points
+    public List<Transform> jumpPoints = new List<Transform>();
+
+
+    [SerializeField] Player player;
+
+    private void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            player.Jump(Vector3.up);
+        }
     }
 }
