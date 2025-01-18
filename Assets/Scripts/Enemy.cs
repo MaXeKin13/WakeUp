@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
         else
         {
             GameManager.instance.nightmareObjects.Add(this.gameObject);
+            GameManager.instance.onNightmareFinish += DisableNightmare;
             gameObject.SetActive(false);
             
         }
@@ -60,5 +61,9 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(watiTime);
         transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => StartCoroutine(MoveRight(timeToReach)));
     }
+
+    public void DisableNightmare()
+    { StopAllCoroutines(); }
+    
 
 }

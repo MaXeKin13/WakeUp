@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
 
 
     public event Action onNightmare;
+    public event Action onNightmareFinish;
     public event Action isLeftRight;
+    private bool isNightmare = false;
     private void Awake()
     {
         instance = this;
@@ -41,27 +43,35 @@ public class GameManager : MonoBehaviour
     }
     public void Nightmare()
     {
-        StartCoroutine(NightmareRoutine());
-        IEnumerator NightmareRoutine()
+        if (!isNightmare)
         {
-            foreach(GameObject obj in nightmareObjects)
+            isNightmare = true;
+            StartCoroutine(NightmareRoutine());
+            IEnumerator NightmareRoutine()
             {
-                obj.SetActive(true);
-                
+                foreach (GameObject obj in nightmareObjects)
+                {
+                    obj.SetActive(true);
+
+                }
+                respawnZone.speed = 0.11f;
+                onNightmare?.Invoke();
+                yield return new WaitForSeconds(2f);
+                EndNightmare();
             }
-            respawnZone.speed += 0.01f;
-            onNightmare?.Invoke();
-            yield return new WaitForSeconds(5f);
-            EndNightmare();
         }
     }
 
     public void EndNightmare()
     {
+        isNightmare = false ;
+        onNightmareFinish?.Invoke();
         foreach (GameObject obj in nightmareObjects)
         {
+            
             obj.SetActive(false);
-            respawnZone.speed -= 0.2f;
+            
         }
+        respawnZone.speed = 0.1f;
     }
 }

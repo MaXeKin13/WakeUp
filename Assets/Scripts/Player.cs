@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y, rb.velocity.z);
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !airborn)
         {
             pressingJump = true;
             StartCoroutine(Jump(Vector3.up));
