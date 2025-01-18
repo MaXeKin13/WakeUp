@@ -24,12 +24,11 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Jump(Vector3 dir)
     {
-        //PlayAnim("Jump");
+        PlayAnim("Jump");
+        //yield return new WaitForSeconds(0.1f);
         float initialYPos = transform.position.y;
         //rb.AddForce(Vector3.up*jumpPower, ForceMode.Impulse);
 
-        Debug.Log(initialYPos);
-        Debug.Log(transform.position.y);
         while (pressingJump && transform.position.y < initialYPos + maxJumpHeight)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
@@ -70,7 +69,12 @@ public class Player : MonoBehaviour
             airborn = false;
         }
 
-        if(collision.transform.CompareTag("Enemy"))
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Enemy"))
         {
             GameManager.instance.Nightmare();
         }
@@ -89,11 +93,10 @@ public class Player : MonoBehaviour
         //
         while (airborn)
         {
-            Debug.Log("Downwards");
             rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             yield return null;
         }
-        //PlayAnim("Fall");
+        PlayAnim("Fall");
     }
     private void FixedUpdate()
     {

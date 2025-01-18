@@ -12,23 +12,51 @@ public class Enemy : MonoBehaviour
     private Vector3 rightPos;
     private Vector3 leftPos;
 
-
+    public bool isNightmare = false;
     private void Start()
     {
+        if(isNightmare)
+            GameManager.instance.onNightmare += NightmareMove;
        rightPos = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
        leftPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-       StartCoroutine(MoveRight(waitTime));
+        if(!isNightmare )
+            StartCoroutine(MoveRight(waitTime));
+        else
+        {
+            GameManager.instance.nightmareObjects.Add(this.gameObject);
+            gameObject.SetActive(false);
+            
+        }
 
+
+    }
+    private void NightmareMove()
+    {
+        StartCoroutine(WaitTillLeftRight());
+        IEnumerator WaitTillLeftRight()
+        {
+            bool eventTriggered = false;
+            GameManager.instance.isLeftRight += () => eventTriggered = true;
+            //transform.position = rightPos;
+            yield return new WaitUntil(() => eventTriggered);
+
+            Debug.Log("trigger");
+            StartCoroutine(MoveLeft(waitTime));
+            Debug.Log("MOVE");
+        }
     }
     private IEnumerator MoveRight(float waitTime)
     {
+        GameManager.instance.IsLeftRight();
+
         yield return new WaitForSeconds(waitTime);
-        transform.DOMove(rightPos, timeToReach).SetEase(Ease.Linear).OnComplete(()=> StartCoroutine(MoveLeft(0.5f)));
+        transform.DOMove(rightPos, timeToReach).SetEase(Ease.Linear).OnComplete(()=> StartCoroutine(MoveLeft(timeToReach)));
     }
     private IEnumerator MoveLeft(float watiTime)
     {
+        //GameManager.instance.IsLeftRight();
         yield return new WaitForSeconds(watiTime);
-        transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => StartCoroutine(MoveRight(0.5f)));
+        transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => StartCoroutine(MoveRight(timeToReach)));
     }
 
 }
