@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -48,13 +49,14 @@ public class Enemy : MonoBehaviour
     private IEnumerator MoveRight(float waitTime)
     {
         GameManager.instance.IsLeftRight();
-
+        transform.DORotate(new Vector3(0, 0, 0), waitTime);
         yield return new WaitForSeconds(waitTime);
         transform.DOMove(rightPos, timeToReach).SetEase(Ease.Linear).OnComplete(()=> StartCoroutine(MoveLeft(timeToReach)));
     }
     private IEnumerator MoveLeft(float watiTime)
     {
         //GameManager.instance.IsLeftRight();
+        transform.DORotate(new Vector3(0,-180,0), watiTime);
         yield return new WaitForSeconds(watiTime);
         transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => StartCoroutine(MoveRight(timeToReach)));
     }
