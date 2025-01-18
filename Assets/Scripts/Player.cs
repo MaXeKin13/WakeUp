@@ -17,10 +17,17 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    public void Jump(Vector3 dir)
+    public IEnumerator Jump(Vector3 dir)
     {
         //rb.AddForce(Vector3.up*jumpPower, ForceMode.Impulse);
-        rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
+        
+        while (pressingJump)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
+
+            //always keep this velocity until let go
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     private void Update()
@@ -37,7 +44,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             pressingJump = true;
-            Jump(Vector3.up);
+            StartCoroutine(Jump(Vector3.up));
         }
         if(pressingJump && Input.GetMouseButtonUp(0))
         {

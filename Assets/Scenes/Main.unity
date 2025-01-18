@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &502968735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a0da8e00bf86e4b88d08c60c9943ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 10
+  jumpPower: 15
   moveSpeed: 5
   airborn: 0
 --- !u!54 &548819361
