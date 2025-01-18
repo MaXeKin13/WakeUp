@@ -6,13 +6,29 @@ public class GameManager : MonoBehaviour
 {
 
     //Jump Points
-    public List<Transform> jumpPoints = new List<Transform>();
 
+    public static GameManager instance;
 
     [SerializeField] Player player;
 
+    public List<GameObject> nightmareObjects = new List<GameObject>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Update()
     {
         
+    }
+
+    public void Nightmare()
+    {
+
+        IEnumerator NightmareRoutine()
+        {
+
+            yield return new WaitForSeconds(5f);
+        }
     }
 }

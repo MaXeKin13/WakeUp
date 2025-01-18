@@ -14,13 +14,17 @@ public class Player : MonoBehaviour
 
     private bool pressingJump = false;
     public bool airborn = false;
+    
 
+    private Animator animator;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
     public IEnumerator Jump(Vector3 dir)
     {
+        //PlayAnim("Jump");
         float initialYPos = transform.position.y;
         //rb.AddForce(Vector3.up*jumpPower, ForceMode.Impulse);
 
@@ -65,6 +69,11 @@ public class Player : MonoBehaviour
         {
             airborn = false;
         }
+
+        if(collision.transform.CompareTag("Enemy"))
+        {
+            GameManager.instance.Nightmare();
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -77,16 +86,25 @@ public class Player : MonoBehaviour
     private IEnumerator StopJumping()
     {
         pressingJump = false;
+        //
         while (airborn)
         {
             Debug.Log("Downwards");
             rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             yield return null;
         }
+        //PlayAnim("Fall");
     }
     private void FixedUpdate()
     {
         
+    }
+
+
+    private void PlayAnim(string animName)
+    {
+        if(animName != null) 
+        animator.Play(animName);
     }
 
 }
