@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float jumpPower = 10f;
     public float moveSpeed = 1f;
+
+    public float maxJumpHeight;
     
     private Rigidbody rb;
 
@@ -19,15 +21,19 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Jump(Vector3 dir)
     {
+        float initialYPos = transform.position.y;
         //rb.AddForce(Vector3.up*jumpPower, ForceMode.Impulse);
-        
-        while (pressingJump)
+
+        Debug.Log(initialYPos);
+        Debug.Log(transform.position.y);
+        while (pressingJump && transform.position.y < initialYPos + maxJumpHeight)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpPower, rb.velocity.z);
 
             //always keep this velocity until let go
             yield return new WaitForFixedUpdate();
         }
+        StartCoroutine(StopJumping());
     }
 
     private void Update()
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
         }
         if(pressingJump && Input.GetMouseButtonUp(0))
         {
-            pressingJump = false;
+            
             StartCoroutine(StopJumping());
         }
     }
@@ -70,7 +76,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator StopJumping()
     {
-        while(airborn)
+        pressingJump = false;
+        while (airborn)
         {
             Debug.Log("Downwards");
             rb.AddForce(Vector3.down * 100f, ForceMode.Force);

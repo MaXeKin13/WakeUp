@@ -480,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 15
   moveSpeed: 5
+  maxJumpHeight: 5
   airborn: 0
 --- !u!54 &548819361
 Rigidbody:
