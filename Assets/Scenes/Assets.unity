@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud_Long_C
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3543f2c2d4abc1b43b4e05005d428fc4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3543f2c2d4abc1b43b4e05005d428fc4, type: 3}
 --- !u!1001 &989408596
@@ -393,6 +397,7 @@ GameObject:
   - component: {fileID: 1689323748}
   - component: {fileID: 1689323747}
   - component: {fileID: 1689323746}
+  - component: {fileID: 1689323749}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -466,6 +471,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689323749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689323745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &1758977750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -521,6 +559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud_Long_B
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 44617b1a56c5b5648bdcf96e22e7a7ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44617b1a56c5b5648bdcf96e22e7a7ef, type: 3}
 --- !u!1001 &1905573937
@@ -574,13 +616,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5033274924035982962, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5033274924035982962, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: faaf270543aebcc4aa1080526b3e4bda, type: 2}
+    - target: {fileID: -5033274924035982962, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c30b1b5d31f2871468542c95880c2c1c, type: 2}
     - target: {fileID: 919132149155446097, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
       propertyPath: m_Name
       value: 250118_Player_02_Rigged
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e891705ec3f62a747bbdb7e6051836e4, type: 3}
@@ -639,6 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloud_Small_A
       objectReference: {fileID: 0}
+    - target: {fileID: 4292550510211350920, guid: beeca242874c9ce47932478350b15824, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeca242874c9ce47932478350b15824, type: 3}
 --- !u!1001 &7068057215500433813
@@ -651,6 +709,10 @@ PrefabInstance:
     - target: {fileID: 1543931278662701363, guid: 90963d33d7aa7184c98f4e27c1b4d9a4, type: 3}
       propertyPath: m_Name
       value: Cloud_Long_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543931278662701363, guid: 90963d33d7aa7184c98f4e27c1b4d9a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2172694340533373833, guid: 90963d33d7aa7184c98f4e27c1b4d9a4, type: 3}
       propertyPath: m_RootOrder
