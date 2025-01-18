@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
                 obj.SetActive(true);
                 
             }
-            respawnZone.speed += 0.2f;
+            respawnZone.speed += 0.01f;
             onNightmare?.Invoke();
             yield return new WaitForSeconds(5f);
             EndNightmare();
