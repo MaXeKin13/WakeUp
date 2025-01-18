@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> nightmareObjects = new List<GameObject>();
 
+    
 
     public event Action onNightmare;
     public event Action onNightmareFinish;
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
                 }
                 respawnZone.speed = 0.11f;
                 onNightmare?.Invoke();
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(5f);
                 EndNightmare();
             }
         }
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     public void EndNightmare()
     {
+        Debug.Log("EndNightmare");
         isNightmare = false ;
         onNightmareFinish?.Invoke();
         foreach (GameObject obj in nightmareObjects)
