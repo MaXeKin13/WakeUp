@@ -17,18 +17,18 @@ public class Enemy : MonoBehaviour
     {
        rightPos = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
        leftPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        MoveRight(waitTime);
+       StartCoroutine(MoveRight(waitTime));
 
     }
     private IEnumerator MoveRight(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        transform.DOMove(rightPos, timeToReach).SetEase(Ease.Linear).OnComplete(()=> MoveLeft(0.5f));
+        transform.DOMove(rightPos, timeToReach).SetEase(Ease.Linear).OnComplete(()=> StartCoroutine(MoveLeft(0.5f)));
     }
     private IEnumerator MoveLeft(float watiTime)
     {
         yield return new WaitForSeconds(watiTime);
-        transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => MoveRight(0.5f));
+        transform.DOMove(leftPos, timeToReach).SetEase(Ease.Linear).OnComplete(() => StartCoroutine(MoveRight(0.5f)));
     }
 
 }
